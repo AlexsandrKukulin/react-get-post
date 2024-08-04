@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import RoleList from './components/RoleList';
+import SignUpForm from './components/SignUpForm';
+import GetCodeForm from './components/GetCodeForm';
+import SetStatusForm from './components/SetStatusForm';
+import TokenDisplay from './components/TokenDisplay';
+import styles from './App.module.css';
 
-function App() {
+const queryClient = new QueryClient();
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className={styles.container}>
+        <h1>Методы API</h1>
+        <div className={`${styles.block} ${styles.roleBlock}`}>
+          <RoleList />
+        </div>
+        <div className={`${styles.block} ${styles.signUpBlock}`}>
+          <SignUpForm />
+        </div>
+        <div className={`${styles.block} ${styles.getCodeBlock}`}>
+          <GetCodeForm />
+        </div>
+        <div className={`${styles.block} ${styles.setStatusBlock}`}>
+          <SetStatusForm />
+        </div>
+        <div className={`${styles.block} ${styles.tokenDisplayBlock}`}>
+          <TokenDisplay />
+        </div>
+      </div>
+    </QueryClientProvider>
   );
-}
+};
 
 export default App;
